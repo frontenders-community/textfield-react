@@ -1,0 +1,144 @@
+.textfield {
+  --content-color: var(--text-color);
+  --border-color: var(--dark-grey-color);
+  --bg-color: var(--white-color);
+  --font-size: 1rem;
+  position: relative;
+  padding-top: calc(var(--font-size) + 5px);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  font-size: var(--font-size);
+  height: 2.5em;
+  color: var(--content-color);
+  border-radius: 0.375rem;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.textfield.is-focused .control {
+  box-shadow: 0 0 0 0.125em var(--border-color);
+}
+
+.control input {
+  border: 0;
+  font-size: var(--font-size);
+  background-color: var(--bg-color);
+}
+
+input:focus-visible {
+  outline: none;
+}
+
+label {
+  color: var(--content-color);
+  font-size: var(--font-size);
+  position: absolute;
+  top: 0;
+  left: 5px;
+}
+
+.icon {
+  color: var(--border-color);
+  font-size: var(--font-size);
+}
+
+.icon.left {
+  margin-right: 5px;
+}
+
+.icon.right {
+  margin-left: 10px;
+}
+
+.helper-text {
+  color: var(--content-color);
+  text-align: left;
+  font-size: calc(var(--font-size) - 0.3rem);
+  margin-left: 5px;
+}
+
+/* Color states */
+.textfield.primary {
+  --content-color: var(--primary-color);
+  --border-color: var(--primary-color);
+}
+
+.textfield.link {
+  --content-color: var(--link-color);
+  --border-color: var(--link-color);
+}
+
+.textfield.info {
+  --content-color: var(--info-color);
+  --border-color: var(--info-color);
+}
+
+.textfield.success {
+  --content-color: var(--success-color);
+  --border-color: var(--success-color);
+}
+
+.textfield.warning {
+  --content-color: var(--warning-color);
+  --border-color: var(--warning-color);
+}
+
+.textfield.danger {
+  --content-color: var(--danger-color);
+  --border-color: var(--danger-color);
+}
+
+/* Sizes */
+.control.small {
+  --font-size: 0.8rem;
+}
+
+.control.normal {
+  --font-size: 1rem;
+}
+
+.control.medium {
+  --font-size: 1.2rem;
+}
+
+.control.large {
+  --font-size: 1.4rem;
+}
+
+/* Borders */
+.squared {
+  border-radius: 0;
+}
+
+.rounded {
+  border-radius: 9999px;
+}
+
+/* Attributes */
+.control.disabled {
+  --bg-color: var(--disabled-color);
+}
+
+/* Floating label handling */
+.textfield.floating label {
+  top: 50%;
+  left: 16px;
+  color: var(--dark-grey-color);
+  transform-origin: left top;
+  user-select: none;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 150ms cubic-bezier(0.4, 0, 0.2, 1), top 500ms;
+}
+
+.textfield.floating.is-focused label {
+  transform: translateY(-120%) scale(0.75);
+  color: var(--content-color);
+}
