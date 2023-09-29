@@ -46,6 +46,11 @@ label {
   left: 5px;
 }
 
+.control button {
+  background-color: transparent;
+  border: 0;
+}
+
 .icon {
   color: var(--border-color);
   font-size: var(--font-size);

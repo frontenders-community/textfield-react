@@ -74,6 +74,10 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.flex > * {
+  max-width: 30%;
+}
+
 .align-items-start {
   align-items: flex-start;
 }
