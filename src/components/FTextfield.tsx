@@ -5,9 +5,8 @@
 // 4. Helper text
 
 import { useState } from "react";
-import IconEye from "../icons/IconEye";
+import { FPasswordField } from "./FPasswordField";
 import "./FTextfield.css";
-import IconEyeSlash from "../icons/IconEyeSlach";
 
 export enum Size {
   Small = "small",
@@ -32,11 +31,13 @@ export enum TextFieldType {
   Tel = "tel",
   Text = "text",
   Url = "url",
+  Number = "number",
 }
 
-interface Props {
+export interface Props {
   id: string;
   label: string;
+  value?: string | number;
   color?: Color;
   size?: Size;
   placeholder?: string;
@@ -44,17 +45,20 @@ interface Props {
   disabled?: boolean;
   type?: TextFieldType;
   helperText?: string;
+  updateValue?: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export function FTextField({
   id,
   label,
+  value,
   size,
   color,
   helperText,
+  updateValue,
   type = TextFieldType.Text,
 }: Props) {
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [focus, setFocus] = useState(false);
 
   function getControlClasses() {
     let classes = ["control"];
@@ -74,30 +78,25 @@ export function FTextField({
     return classes.join(" ");
   }
 
-  function getPasswordIcon() {
-    if (passwordVisible) {
-      return <IconEyeSlash />;
-    } else {
-      return <IconEye />;
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (updateValue) {
+      updateValue(event);
     }
-  }
-
-  function handlePasswordIconClick() {
-    setPasswordVisible(!passwordVisible);
   }
 
   return (
     <div className={getTextfieldClass()}>
       <div className={getControlClasses()}>
         {type === TextFieldType.Password ? (
-          <>
-            <input id={id} type={passwordVisible ? "text" : "password"} />
-            <button className="icon right" onClick={handlePasswordIconClick}>
-              {getPasswordIcon()}
-            </button>
-          </>
+          <FPasswordField id={id} value={value} handleChange={handleChange} />
         ) : (
-          <input id={id} type={type} />
+          <input
+            id={id}
+            type={type}
+            value={value}
+            onChange={handleChange}
+            onFocus={() => setFocus(!focus)}
+          />
         )}
       </div>
       <label htmlFor={id}>{label}</label>

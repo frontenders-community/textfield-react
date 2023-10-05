@@ -1,7 +1,24 @@
+import { useState } from "react";
 import "./App.css";
-import { FTextField, Size, Color, TextFieldType } from "./components/FTextfield";
+import {
+  FTextField,
+  Size,
+  Color,
+  TextFieldType,
+} from "./components/FTextfield";
 
 function App() {
+  const [textValue, setTextValue] = useState("Ciao");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setTextValue(event?.target.value);
+  }
+
+  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setPasswordValue(event?.target.value);
+  }
+
   return (
     <>
       <section>
@@ -16,7 +33,10 @@ function App() {
                 id="small-size-textfield"
                 label="Small"
                 size={Size.Small}
+                value={textValue}
+                updateValue={handleChange}
               />
+              <p>{textValue}</p>
               <FTextField
                 id="normal-size-textfield"
                 label="Normal"
@@ -59,7 +79,10 @@ function App() {
                 label="Password"
                 type={TextFieldType.Password}
                 helperText="La password deve contenere almeno 8 caratteri, inclusi lettere maiuscole, minuscole, numeri e caratteri speciali"
+                value={passwordValue}
+                updateValue={handlePasswordChange}
               />
+              <p>{passwordValue}</p>
               <FTextField
                 id="searchfield-attr-textfield"
                 label="Searchfield"

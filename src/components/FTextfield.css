@@ -23,6 +23,10 @@
   background-color: var(--bg-color);
 }
 
+.control:has( > input:focus) {
+  border: 1px solid green;
+}
+
 .textfield.is-focused .control {
   box-shadow: 0 0 0 0.125em var(--border-color);
 }
